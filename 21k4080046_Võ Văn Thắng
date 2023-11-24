@@ -1,0 +1,143 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace bai_tạp_5
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.Write(" Nhập điểm:");
+            float ĐTB = float.Parse(Console.ReadLine());
+            if (ĐTB >= 9)
+            {
+                Console.Write("Xuất sắc");
+            }
+            if (ĐTB < 9 & ĐTB >= 8)
+    {
+                Console.Write(" Giỏi");
+            }
+            if (ĐTB < 8 & ĐTB >= 6.5)
+            {
+                Console.Write("Khá");
+            }
+            if (ĐTB < 6.5 & ĐTB >= 5)
+            {
+                Console.Write("Trung Bình");
+            }
+            if (ĐTB < 5 & ĐTB >= 3.5)
+            {
+                Console.Write(" Yếu");
+            }
+            else if (ĐTB<3.5)
+            {
+                Console.Write(" Kém");
+            }
+            Console.ReadKey();
+        }
+    }
+}
+---------------------------------------------------------------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace quy_doi_tien
+{
+    internal class Program
+    {
+        const int MAX = 4; // Số loại tiền tệ
+        static int[] c = { 500, 200, 100, 50 }; // Mệnh giá của từng loại tiền tệ
+        static int[] a = new int[MAX]; // Số lượng tiền tệ cần đổi
+        static int n;
+
+        static void Main(string[] args)
+        {
+            Console.Write("quy khach hay nhap vao = ");
+            n = Convert.ToInt32(Console.ReadLine());
+
+            for (int i = 0; i < MAX; i++)
+            {
+                a[i] = n / c[i];
+                Console.WriteLine($"so tien tung loai {c[i]}: {a[i]}");
+                n = n % c[i]; // Lấy số dư để tính số tiền còn lại
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
+-----------------------------------------------------------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.OutputEncoding = Encoding.UTF8;
+
+        // Nhập số điện tiêu thụ
+        Console.Write("Nhập số điện tiêu thụ (kWh): ");
+        int soDienTieuThu = Convert.ToInt32(Console.ReadLine());
+
+        // Xác định giá điện theo khoảng số điện tiêu thụ
+        int giaDien;
+        if (soDienTieuThu >= 1 && soDienTieuThu <= 50)
+        {
+            giaDien = 1484;
+        }
+        else if (soDienTieuThu > 50 && soDienTieuThu <= 100)
+        {
+            giaDien = 1533;
+        }
+        else if (soDienTieuThu > 100 && soDienTieuThu <= 200)
+        {
+            giaDien = 1786;
+        }
+        else if (soDienTieuThu > 200 && soDienTieuThu <= 300)
+        {
+            giaDien = 2242;
+        }
+        else if (soDienTieuThu > 300 && soDienTieuThu <= 400)
+        {
+            giaDien = 2503;
+        }
+        else if (soDienTieuThu > 400)
+        {
+            giaDien = 2587;
+        }
+        else
+        {
+            // Xử lý trường hợp số điện tiêu thụ là số âm hoặc không hợp lệ
+            Console.WriteLine("Số điện tiêu thụ không hợp lệ. Vui lòng kiểm tra lại.");
+            return; // Kết thúc chương trình
+        }
+
+        // Nhập thuế suất thuế giá trị gia tăng
+        Console.Write("Nhập thuế suất thuế giá trị gia tăng (%): ");
+        float thueSuatThueGiaTriGiaTang = Convert.ToSingle(Console.ReadLine());
+
+        // Tính tiền điện cơ bản
+        int tienDienCoBan = soDienTieuThu * giaDien;
+
+        // Tính thuế giá trị gia tăng
+        float thueGiaTriGiaTang = tienDienCoBan * (thueSuatThueGiaTriGiaTang / 100);
+
+        // Tính tổng tiền điện phải trả
+        float tongTienDienPhaiTra = tienDienCoBan + thueGiaTriGiaTang;
+
+        // In tổng tiền điện phải trả
+        Console.WriteLine("Tổng tiền điện phải trả: {0} đồng", tongTienDienPhaiTra);
+        Console.ReadLine();
+    }
+}
